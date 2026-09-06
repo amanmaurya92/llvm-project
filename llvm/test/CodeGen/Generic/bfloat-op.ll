@@ -24,7 +24,9 @@
 ; FIXME: mips crashes
 ; RUN: %if msp430-registered-target      %{ llc %s -o - -mtriple=msp430-none-elf                 | FileCheck %s --check-prefixes=ALL,CHECK-COPYSIGN,BAD-FMA %}
 ; RUN: %if nvptx-registered-target       %{ llc %s -o - -mtriple=nvptx64-nvidia-cuda             | FileCheck %s --check-prefixes=NOCRASH %}
-; FIXME: powerpc crashes
+; RUN: %if powerpc-registered-target      %{ llc %s -o - -mtriple=powerpc64le-unknown-linux-gnu   | FileCheck %s --check-prefixes=ALL,CHECK-COPYSIGN,CHECK-FMA %}
+; RUN: %if powerpc-registered-target      %{ llc %s -o - -mtriple=ppc64-unknown-linux-gnu         | FileCheck %s --check-prefixes=ALL,CHECK-COPYSIGN,CHECK-FMA %}
+; RUN: %if powerpc-registered-target      %{ llc %s -o - -mtriple=powerpc-unknown-linux-gnu       | FileCheck %s --check-prefixes=ALL,CHECK-COPYSIGN,CHECK-FMA %}
 ; RUN: %if riscv-registered-target       %{ llc %s -o - -mtriple=riscv32-unknown-linux-gnu       | FileCheck %s --check-prefixes=ALL,CHECK-COPYSIGN,BAD-FMA %}
 ; RUN: %if riscv-registered-target       %{ llc %s -o - -mtriple=riscv64-unknown-linux-gnu       | FileCheck %s --check-prefixes=ALL,CHECK-COPYSIGN,BAD-FMA %}
 ; FIXME: sparc crashes
